@@ -17,4 +17,10 @@ def posts_index(request, user_id):
     user = User.objects.get(pk=user_id)
     posts = Post.objects.filter(owner_id=user_id)
     context = {'posts': posts, 'user': user}
-    return render(request, 'blogs/posts_index.html', context)    
+    return render(request, 'blogs/posts_index.html', context)
+
+def post_view(request, user_id, post_id):
+    user = User.objects.get(pk=user_id)
+    post = Post.objects.get(pk=post_id)
+    context = {'post': post, 'user': user}
+    return render(request, 'blogs/post_view.html', context)

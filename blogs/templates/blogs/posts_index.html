@@ -1,11 +1,14 @@
 <h2>{{ user.username }}'s blog</h2>
 <p>
-    <a href="{% url 'index' %}">Blog index</a>
+    <a href="{% url 'index' %}">Return blog index</a>
+</p>
+<p>
+    <a href="{% url 'new_post' %}">Add new post</a>
 </p>
 {% if posts %}
     <ul>
     {% for post in posts %}
-        <li>{{ post.title }}</li>
+        <li><a href="{% url 'post_view' user.id post.id %}">{{ post.title }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
