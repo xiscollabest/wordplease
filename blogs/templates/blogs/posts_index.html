@@ -1,0 +1,13 @@
+<h2>{{ user.username }}'s blog</h2>
+<p>
+    <a href="{% url 'index' %}">Blog index</a>
+</p>
+{% if posts %}
+    <ul>
+    {% for post in posts %}
+        <li>{{ post.title }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No posts are available.</p>
+{% endif %}
