@@ -1,7 +1,8 @@
 {% if post %}
 <div class="blog-post">
     <h2 class="blog-post-title">{{ post.title }}</h2>
-    <p class="blog-post-meta">{{ post.pub_date }} by <a href="{% url 'posts_index' post.owner.id %}">{{ post.owner.username }}</a></p>
+    <p class="blog-post-meta" style="margin-bottom: 0px;">{{ post.pub_date }} by <a href="{% url 'posts_index' post.owner.id %}">{{ post.owner.username }}</a></p>
+    {% include "blogs/categories.html" with categories=post.category.all %}
     <p>{{ post.description }}</p>
     <a href="{% url 'post_view' post.owner.id post.id %}">Continue reading...</a>
 </div>

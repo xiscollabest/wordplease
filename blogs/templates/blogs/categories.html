@@ -1,0 +1,7 @@
+<p class="blog-post-meta" style="font-style: italic">
+{% if categories %}
+    {% for c in categories %}
+        {{ c.name }} | 
+    {% endfor %}
+{% endif %}
+</p>

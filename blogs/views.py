@@ -21,7 +21,7 @@ def index(request):
 
 def posts_index(request, user_id):
     owner = User.objects.get(pk=user_id)
-    posts = Post.objects.filter(owner_id=user_id)
+    posts = Post.objects.filter(owner_id=user_id).order_by('-pub_date')
     context = {'posts': posts, 'owner': owner}
     return render(request, 'blogs/posts_index.html', context)
 
@@ -38,6 +38,7 @@ def new_post(request):
             post = form.save(commit=False)
             post.owner = request.user
             post.save()
+            form.save_m2m()
             return redirect('post_view', user_id=post.owner.id, post_id=post.id)
     else:
         form = PostForm()
