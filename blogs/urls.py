@@ -10,4 +10,5 @@ urlpatterns = [
     path('blogs/<int:user_id>/<int:post_id>', views.post_view, name='post_view'),
 
     path('accounts/', include('django.contrib.auth.urls')),
+    path('signup/', views.SignUp.as_view(), name='signup'),
 ]

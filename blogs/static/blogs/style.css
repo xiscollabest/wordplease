@@ -79,6 +79,10 @@ h6 {
     }
 }
 
+.errorlist{
+    color: red;
+}
+
 
 /*
  * Blog name and description

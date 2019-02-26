@@ -4,6 +4,10 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from .models import Post, Category
 
+from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
+from django.views import generic
+
 def home(request):
     posts = Post.objects.all().order_by('-pub_date')[:5]
     context = {'posts': posts}
@@ -29,3 +33,9 @@ def post_view(request, user_id, post_id):
     post = Post.objects.get(pk=post_id)
     context = {'post': post, 'owner': owner}
     return render(request, 'blogs/post_view.html', context)
+
+
+class SignUp(generic.CreateView):
+    form_class = UserCreationForm
+    success_url = reverse_lazy('login')
+    template_name = 'signup.html'
