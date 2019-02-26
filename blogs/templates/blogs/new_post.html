@@ -8,9 +8,15 @@ New post
 {% endblock %}
 
 {% block content %}
-<form method="post" class="post-form">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button class="save btn btn-outline-dark" type="submit">New post</button>
-</form>
+{% if user.is_authenticated %}
+    <form method="post" class="post-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="save btn btn-outline-dark" type="submit">New post</button>
+    </form>
+{% else %}
+    <div class="alert alert-danger" role="alert">
+            You have to authenticate to add new post!
+      </div>
+{% endif %}
 {% endblock %}
