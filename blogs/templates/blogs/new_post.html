@@ -8,6 +8,12 @@ New post
 {% endblock %}
 
 {% block content %}
+<form method="post" class="post-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="save btn btn-outline-dark" type="submit">New post</button>
+</form>
+<!-- 
 <form>
     <div class="form-group">
         <label for="title">Title</label>
@@ -44,5 +50,5 @@ New post
     <div class="form-group"></div>
         <button class="btn btn-outline-dark" type="submit">Submit</button>
     </div>
-</form>
+</form> -->
 {% endblock %}

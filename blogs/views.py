@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
 from django.contrib.auth.models import User
 from .models import Post, Category
+from .forms import PostForm
 
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
@@ -18,10 +19,6 @@ def index(request):
     context = {'users': users}
     return render(request, 'blogs/index.html', context)
 
-def new_post(request):
-    context = {}
-    return render(request, 'blogs/new_post.html', context)
-
 def posts_index(request, user_id):
     owner = User.objects.get(pk=user_id)
     posts = Post.objects.filter(owner_id=user_id)
@@ -34,6 +31,18 @@ def post_view(request, user_id, post_id):
     context = {'post': post, 'owner': owner}
     return render(request, 'blogs/post_view.html', context)
 
+def new_post(request):
+    if request.method == "POST":
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.owner = request.user
+            post.save()
+            return redirect('post_view', user_id=post.owner.id, post_id=post.id)
+    else:
+        form = PostForm()
+
+    return render(request, 'blogs/new_post.html', {'form': form})
 
 class SignUp(generic.CreateView):
     form_class = UserCreationForm
