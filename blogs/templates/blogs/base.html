@@ -25,9 +25,14 @@
 
                     <div class="col-4 d-flex justify-content-end align-items-center">
                         <!-- Sign Up -->
-                        <a class="btn btn-sm btn-outline-secondary" href="{% url 'new_post' %}">New post</a>
-                        &nbsp;
-                        <a class="btn btn-sm btn-outline-secondary" href="#">Sign up</a>
+                        {% if user.is_authenticated %}
+                            <a class="btn btn-sm btn-outline-info" href="{% url 'posts_index' user.id %}">Hi {{ user.username }}</a>&nbsp;
+                            <a class="btn btn-sm btn-outline-secondary" href="{% url 'new_post' %}">New post</a>&nbsp;
+                            <a class="btn btn-sm btn-outline-danger" href="{% url 'logout' %}">Log out</a>
+                        {% else %}
+                            <a class="btn btn-sm btn-outline-secondary" href="#">Sign up</a>&nbsp;
+                            <a class="btn btn-sm btn-outline-success" href="{% url 'login' %}">Log in</a>
+                        {% endif %}
                     </div>
                 </div>
             </header>
