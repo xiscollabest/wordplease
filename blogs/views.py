@@ -4,6 +4,11 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from .models import Post, Category
 
+def home(request):
+    posts = Post.objects.all().order_by('-pub_date')[:5]
+    context = {'posts': posts}
+    return render(request, 'blogs/home.html', context)
+
 def index(request):
     users = User.objects.all()
     context = {'users': users}

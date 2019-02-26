@@ -1,21 +1,21 @@
 {% extends 'blogs/base.html' %}
 
 {% block big_title %}
-{{ user.username }}'s blog
+The best blogs of the best authors
 {% endblock %}
 
 {% block big_description %}
+Hundreds of blogs at your disposal, just choose the one you like to start reading.
+<p class="lead mb-0"><a href="{% url 'index' %}" class="text-white font-weight-bold">See all user blogs...</a></p>
 {% endblock %}
 
 {% block content %}
 <main role="main" class="container">
     <div class="row">
         <div class="col-md-8 blog-main">
-  
-
             {% if posts %}
                 {% for post in posts %}
-                    {% include "blogs/post.html" with post=post user=user %}
+                    {% include "blogs/post.html" with post=post %}
                 {% endfor %}
             {% else %}
                 <p>No posts are available.</p>

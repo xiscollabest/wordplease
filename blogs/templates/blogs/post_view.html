@@ -1,7 +1,18 @@
-<h2>Post view</h2>
-<p>
-    <a href="{% url 'posts_index' user.id %}">Return {{ user.username }}'s blog</a>
-</p>
-<h3>{{ post.title }}</h3>
-<h4>{{ post.description }}</h4>
-<p>{{ post.content}}</p>
+{% extends 'blogs/base.html' %}
+
+{% block big_title %}
+{{ post.owner.username }}'s blog
+{% endblock %}
+
+{% block big_description %}
+<p class="lead mb-0"><a href="{% url 'posts_index' user.id %}" class="text-white font-weight-bold">Return blog index</a></p>
+{% endblock %}
+
+{% block content %}
+<div class="blog-post">
+    <h2 class="blog-post-title">{{ post.title }}</h2>
+    <p class="blog-post-meta">{{ post.pub_date }} by <a href="{% url 'posts_index' user.id %}">{{ post.owner.username }}</a></p>
+    <p><strong>{{ post.description }}</strong></p><hr>
+    <p>{{ post.content }}</p>
+</div>
+{% endblock %}
