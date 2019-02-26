@@ -5,13 +5,13 @@
 {% endblock %}
 
 {% block big_description %}
-<p class="lead mb-0"><a href="{% url 'posts_index' post.owner.id %}" class="text-white font-weight-bold">Return blog index</a></p>
+<p class="lead mb-0"><a href="{% url 'posts_index' post.owner.username %}" class="text-white font-weight-bold">Return blog index</a></p>
 {% endblock %}
 
 {% block content %}
 <div class="blog-post">
     <h2 class="blog-post-title">{{ post.title }}</h2>
-    <p class="blog-post-meta" style="margin-bottom: 0px;">{{ post.pub_date }} by <a href="{% url 'posts_index' post.owner.id %}">{{ post.owner.username }}</a></p>
+    <p class="blog-post-meta" style="margin-bottom: 0px;">{{ post.pub_date }} by <a href="{% url 'posts_index' post.owner.username %}">{{ post.owner.username }}</a></p>
     {% include "blogs/categories.html" with categories=post.category.all %}
     <p><strong>{{ post.description }}</strong></p><hr>
     <p>{{ post.content }}</p>

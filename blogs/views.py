@@ -19,14 +19,14 @@ def index(request):
     context = {'users': users}
     return render(request, 'blogs/index.html', context)
 
-def posts_index(request, user_id):
-    owner = User.objects.get(pk=user_id)
-    posts = Post.objects.filter(owner_id=user_id).order_by('-pub_date')
+def posts_index(request, username):
+    owner = User.objects.get(username=username)
+    posts = Post.objects.filter(owner_id=owner.id).order_by('-pub_date')
     context = {'posts': posts, 'owner': owner}
     return render(request, 'blogs/posts_index.html', context)
 
-def post_view(request, user_id, post_id):
-    owner = User.objects.get(pk=user_id)
+def post_view(request, username, post_id):
+    owner = User.objects.get(username=username)
     post = Post.objects.get(pk=post_id)
     context = {'post': post, 'owner': owner}
     return render(request, 'blogs/post_view.html', context)
@@ -39,7 +39,7 @@ def new_post(request):
             post.owner = request.user
             post.save()
             form.save_m2m()
-            return redirect('post_view', user_id=post.owner.id, post_id=post.id)
+            return redirect('post_view', username=post.owner.username, post_id=post.id)
     else:
         form = PostForm()
 
