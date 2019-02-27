@@ -32,11 +32,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'rest_auth', 
-    'rest_auth.registration',
     'rest_framework',
     'rest_framework.authtoken',
-    'allauth',
-    'allauth.account',
     'django.contrib.sites',
     'django.contrib.admin',
     'django.contrib.auth',
