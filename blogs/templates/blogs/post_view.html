@@ -11,7 +11,9 @@
 {% block content %}
 <div class="blog-post row">
     <div class="col-3">
-        <img class="rounded img-thumbnail" src="{{ post.image.url }}" alt="{{ post.title }}" title="{{ post.image }}" />
+        {% if post.image %}
+            <img class="rounded img-thumbnail" src="{{ post.image.url }}" alt="{{ post.title }}" title="{{ post.image }}" />
+        {% endif %}
     </div>
     <div class="col-9">
         <h2 class="blog-post-title">{{ post.title }}</h2>
