@@ -3,7 +3,7 @@ from django.http import HttpResponse
 
 from django.contrib.auth.models import User
 from .models import Post, Category
-from .forms import PostForm
+from .forms import PostForm, SignUpForm
 
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
@@ -46,6 +46,6 @@ def new_post(request):
     return render(request, 'blogs/new_post.html', {'form': form})
 
 class SignUp(generic.CreateView):
-    form_class = UserCreationForm
+    form_class = SignUpForm
     success_url = reverse_lazy('login')
     template_name = 'signup.html'
