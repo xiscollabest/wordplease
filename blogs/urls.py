@@ -11,4 +11,5 @@ urlpatterns = [
     path('blogs/<str:username>/<int:post_id>', views.post_view, name='post_view'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('signup/', views.SignUp.as_view(), name='signup'),
+    path('api/v1/', include('api.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
