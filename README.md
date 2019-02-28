@@ -2,11 +2,11 @@
 
 ## Prerequisites
 
-1. Python 3  &ndash; <https://www.python.org/>
-2. pip (Python package manager)  &ndash; <https://pip.pypa.io/en/latest/installing/>
+1. Python 3
+2. pip (Python package manager)
 #
 
-## Getting Started
+## Start
 
 Create database
 
